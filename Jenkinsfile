@@ -3,14 +3,14 @@ pipeline {
   stages {
     stage('install') {
       steps {
-        sh '''npm install
+        sh '''yarn add
 '''
       }
     }
 
     stage('start') {
       steps {
-        sh 'npm start'
+        sh 'yarn start'
       }
     }
 
