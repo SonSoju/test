@@ -1,17 +1,26 @@
 pipeline {
   agent any
+    
+  tools {nodejs "node"}
+    
   stages {
-    stage('install') {
+        
+    stage('Cloning Git') {
       steps {
-        sh 'yarn add'
+        git 'https://github.com/SonSoju/test.git'
       }
     }
-
-    stage('start') {
+        
+    stage('Install dependencies') {
       steps {
-        sh 'yarn start'
+        sh 'npm install'
       }
     }
-
+     
+    stage('Test') {
+      steps {
+         sh 'npm test'
+      }
+    }      
   }
 }
