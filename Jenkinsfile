@@ -1,6 +1,6 @@
 pipeline{
     agent any
-    
+
     stages {
         stage('Clone Repository'){
             steps{
@@ -11,18 +11,18 @@ pipeline{
         
         stage('Install Dependencies'){
             steps {
-                bat 'npm install'
+                bat 'sudo npm install'
             }
         }
          stage('Install pm2'){
             steps {
-                bat 'npm install pm2 -g'
+                bat 'sudo npm install pm2 -g'
             }
         }
         
         stage('Deploy'){
             steps {
-                bat 'pm2 startOrRestart pm2.config.json'
+                bat 'sudo pm2 startOrRestart pm2.config.json'
             }
         }
     }
