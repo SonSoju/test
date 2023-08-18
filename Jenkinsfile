@@ -7,12 +7,6 @@ pipeline {
       }
     }
 
-    stage('Install pm2') {
-      steps {
-        sh 'npm install pm2 -g'
-      }
-    }
-
     stage('Deploy') {
       steps {
         sh 'pm2 restart all'
