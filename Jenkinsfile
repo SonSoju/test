@@ -11,12 +11,12 @@ pipeline{
         
         stage('Install Dependencies'){
             steps {
-                bat 'sudo npm install'
+                bat 'yarn install'
             }
         }
          stage('Install pm2'){
             steps {
-                bat 'sudo npm install pm2 -g'
+                bat 'yarn install pm2 -g'
             }
         }
         
