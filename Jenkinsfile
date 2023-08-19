@@ -3,13 +3,13 @@ pipeline {
   stages {
     stage('Install Dependencies') {
       steps {
-        sh 'npm install'
+        sh 'docker build -t deploy-docker:ban-thuoc'
       }
     }
 
     stage('Deploy') {
       steps {
-        sh 'pm2 restart all'
+        sh 'docker run -d --net tulip-net  -p 3006:3008 deploy-docker:ban-thuoc'
       }
     }
 
