@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Install Dependencies') {
       steps {
-        sh 'docker build -t deploy-docker:ban-thuoc .'
+        sh 'docker build .'
       }
     }
 
