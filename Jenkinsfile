@@ -1,17 +1,31 @@
 pipeline {
-  agent any
-  stages {
-    stage('Install Dependencies') {
-      steps {
-        sh 'docker build -t deploy-docker:ban-thuoc'
-      }
+    agent {
+        docker {
+            image 'node:20.5.1'
+            args '-p 3000:3000'
+        }
     }
+     environment {
+            CI = 'true'
+        }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+                    steps {
+                        sh './jenkins/scripts/test.sh'
+                    }
+                }
+                stage('Deliver') {
+                            steps {
+                                sh './jenkins/scripts/deliver.sh'
+                                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                                sh './jenkins/scripts/kill.sh'
+                            }
+                        }
 
-    stage('Deploy') {
-      steps {
-        sh 'docker run -d --net tulip-net  -p 3006:3008 deploy-docker:ban-thuoc'
-      }
     }
-
-  }
 }
