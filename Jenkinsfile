@@ -1,6 +1,12 @@
 pipeline {
   agent any
   stages {
+    stage('pull') {
+      steps {
+        sh 'git pull'
+      }
+    }
+
     stage('build') {
       steps {
         sh 'docker build -t deploy-docker:ban-thuoc .'
