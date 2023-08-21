@@ -9,7 +9,7 @@ pipeline {
 
     stage('build') {
       steps {
-        sh 'docker build -t deploy-docker:ban-thuoc .'
+        sh 'docker build .-t deploy-docker:ban-thuoc'
       }
     }
 
